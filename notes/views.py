@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from .models import Notes
 from django.http import Http404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 
 # Create your views here.
+
+class NotesCreateView(CreateView):
+    model = Notes
+    # template_name = 'notes_form.html'
+    fields = ['title', 'content']
+    success_url = '/smart/notes'
 
 class NotesListView(ListView):
     model = Notes
