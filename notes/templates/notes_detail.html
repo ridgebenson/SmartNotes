@@ -4,4 +4,6 @@
     <h1 class="my-5">{{ note.title }}</h1>
     <p>{{ note.content }}</p>
     </div>
+    <a href="{% url 'notes:edit' note.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'notes:delete' note.id %}" class="btn btn-danger">Delete</a>
 {% endblock %}
