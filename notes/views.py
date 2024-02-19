@@ -4,6 +4,8 @@ from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import NotesForm
 from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
@@ -26,10 +28,14 @@ class NotesDeleteView(DeleteView):
     success_url = '/smart/notes'
 
 
-class NotesListView(ListView):
+class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     template_name = 'notes_list.html'
     context_object_name = 'notes'
+    login_url = '/admin'
+
+    def get_queryset(self):
+        return self.request.user.notes.all()
 
 
 class NotesDetailView(DetailView):
