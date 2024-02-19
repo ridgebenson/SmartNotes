@@ -5,16 +5,23 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import NotesForm
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
 
-class NotesCreateView(CreateView):
+class NotesCreateView(LoginRequiredMixin, CreateView):
     model = Notes
     # template_name = 'notes_form.html'
     # fields = ['title', 'content']
     form_class = NotesForm
     success_url = '/smart/notes'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class NotesUpdateView(UpdateView):
