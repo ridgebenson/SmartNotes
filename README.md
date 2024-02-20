@@ -18,21 +18,13 @@ git clone https://github.com/yourusername/SmartNotes.git
 ```
 cd SmartNotes
 ```
-3. Install the required dependencies
-```
-pip install -r requirements.txt
-```
-4. Run the server
+3. Run the server
 ```
 python manage.py runserver
 ```
-Now, you can access the application on your local server: `http://127.0.0.1:8000/`
-
-## 📚 References
-- Django Essentials Training
+Now, you can access the application on your local server: `http://127.0.0.1:8000/`<br>
+`Deployed version coming soon`
 
 ## 🤝 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## 📜 License
-MIT
